@@ -1,11 +1,15 @@
 import { useState } from "react";
 
-const Player = ({ initialName, symbol, isActive }) => {
+const Player = ({ initialName, symbol, isActive, onChangeName }) => {
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
 
   function toggleEditing() {
     setIsEditing((editing) => !editing);
+
+    if (isEditing) {
+      onChangeName(symbol, playerName);
+    }
   }
 
   function handleChange(event) {
@@ -15,7 +19,7 @@ const Player = ({ initialName, symbol, isActive }) => {
   return (
     <li className={isActive ? "active" : undefined}>
       <span className="player">
-        {isEditing ? (
+        {!isEditing ? (
           <span className="player-name">{playerName}</span>
         ) : (
           <input
