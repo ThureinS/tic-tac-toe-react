@@ -1,11 +1,11 @@
 import React from "react";
 
-const GameOver = ({ winner }) => {
+const GameOver = ({ winner, onRestart }) => {
   return (
     <div id="game-over">
       <h2>Game Over</h2>
       <p>{winner ? `${winner} wins!` : "It's a draw!"}</p>
-      <button>Play Again</button>
+      <button onClick={onRestart}>Play Again</button>
     </div>
   );
 };
